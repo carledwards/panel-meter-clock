@@ -1,0 +1,49 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.3"/>
+  <title>Panel Meter Clock</title>
+  <script language="javascript">
+    function sendTime(hour, minute, second) {
+      var resp, xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          resp = xmlhttp.responseText;
+          console.log("resp: " + resp);
+        }
+      }
+      xmlhttp.open("GET", "/ignore?hour="
+        + hour.toString()
+        + "&minute=" + minute.toString()
+        + "&second=" + second.toString(),
+        true);
+      xmlhttp.send()
+    }
+
+    function setTimeFromField(fieldId) {
+      var time = document.getElementById(fieldId).value;
+      if (time && time.length == 5) {
+        sendTime(time.substring(0, 2), time.substring(3, 5), "00")
+      }
+    }
+
+    function setTimeToNow() {
+      var now = new Date();
+      sendTime(now.getHours(), now.getMinutes(), now.getSeconds());
+    }
+  </script>
+</head>
+<body>
+  <div>
+    Panel Meter Clock
+  </div>
+  <br>
+  <div>
+    <input id="time" type="time" name="time">
+    <button onclick="setTimeFromField('time')">Set Time</button>
+  </div>
+  <br>
+  <div>
+    <button onclick="setTimeToNow()">Set Time to Now</button>
+  </div>
+</body>
+</html>
