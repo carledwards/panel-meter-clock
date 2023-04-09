@@ -7,13 +7,13 @@ import _thread
 from webserver import WebServer
 from network import WLAN
 
-HOURS_SETUP_CYCLE = 790/1000
+HOURS_SETUP_CYCLE = 1000/1000
 MINUTES_SETUP_CYCLE = 880/1000
-SECONDS_SETUP_CYCLE = 860/1000
+SECONDS_SETUP_CYCLE = 940/1000
 
-HOURS_UPPER_CYCLE = 765/1000
-MINUTES_UPPER_CYCLE = 795/1000
-SECONDS_UPPER_CYCLE = 770/1000
+HOURS_UPPER_CYCLE = 980/1000
+MINUTES_UPPER_CYCLE = 820/1000
+SECONDS_UPPER_CYCLE = 840/1000
 
 MIN_BUTTON_PRESS_TIME = 0.05
 MAX_BUTTON_PRESS_TIME = 0.40
@@ -357,7 +357,7 @@ def init():
     set_pin_callback(App.encoderBSignal, encoder_b_callback)
 
     # initialize the Real Time Clock to the date/time this project was started
-    App.rtc.init((2017, 11, 24, 3, 22, 0, 0, 0))
+    App.rtc.init((2017, 11, 24, 12, 59, 50, 0, 0))
 
     # create and start the webServer
     App.webServer = WebServer(80, 'index.htm', webserver_request_callback, True)
